@@ -1,0 +1,25 @@
+{
+  "answer_agent": {
+    "provider": "gemini",
+    "model": "gemini-2.5-flash"
+  },
+  "verifier_agent": {
+    "provider": "gemini",
+    "model": "gemini-2.5-flash"
+  },
+  "retrieval": {
+    "embedding_model": "nomic-embed-text:latest",
+    "knowledge_base_path": "data/knowledge_base.json",
+    "faiss_dir": "artifacts/faiss_kb",
+    "top_k": 3,
+    "rebuild": false
+  },
+  "runtime": {
+    "data_dir": "data",
+    "eval_split": "dev",
+    "knowledge_split": "train",
+    "sample_size": 150,
+    "knowledge_limit": 5000,
+    "sleep_seconds": 0.0
+  }
+}
