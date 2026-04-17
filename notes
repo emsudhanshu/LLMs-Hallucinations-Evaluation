@@ -1,0 +1,75 @@
+Dataset summary 
+    train.json: 182,822 (5000 records are used to make knowledge base)
+    dev.json: 4,183 (150 records are getting used for LLM evaluation)
+    test.json: 6,150 (not getting used for now)
+
+-----------------------------------------
+-----------------------------------------
+
+LLM we are using
+
+    Answer: llama3:latest
+    Verifier: gemini-2.5-flash
+
+    Answer: gemini-2.5-flash
+    Verifier: gemini-2.5-flash
+
+-----------------------------------------
+-----------------------------------------
+
+2 setups 
+   NO-RAG
+   RAG
+
+-----------------------------------------
+-----------------------------------------
+
+Tech Stack
+    Embedding model: nomic-embed-text:latest
+    Embedding model provider: Ollama
+    Vector store: FAISS
+
+-----------------------------------------
+-----------------------------------------
+
+Dataset
+    id
+    question
+    exp (explanation)
+    cop (correct answer)
+    opa (Option A)
+    opb (Option B)
+    opc (Option C)
+    opd (Option D)
+
+-----------------------------------------
+-----------------------------------------
+
+Hallucination
+    FACTUAL_ERROR
+    REASONING_FAILURE
+
+-----------------------------------------
+-----------------------------------------
+
+Perfomance Metrics
+    Accuracy = proportion of questions answered correctly
+    Error rate = 1 - accuracy
+    Hallucination counts = among incorrect answers, how many were labeled:
+    FACTUAL_ERROR
+    REASONING_FAILURE
+
+
+<!-- const [open, setOpen]  = useState(true)
+
+useEffect(()=>{
+    if(time % 2 ==0){
+        setOpen(!open)
+        print("Hello! How are you?")
+    }
+    else{
+        exit()
+    }
+},[open]) -->
+
+
