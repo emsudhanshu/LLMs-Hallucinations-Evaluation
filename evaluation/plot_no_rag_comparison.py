@@ -84,14 +84,20 @@ def plot_total_vs_incorrect(df: pd.DataFrame) -> None:
         var_name="metric",
         value_name="count",
     )
-    metric_order = ["total_records", "correct_records", "incorrect_records"]
+    metric_name_map = {
+        "total_records": "Total",
+        "correct_records": "Correct",
+        "incorrect_records": "Incorrect",
+    }
+    melted["metric_label"] = melted["metric"].map(metric_name_map)
+    metric_order = ["Total", "Correct", "Incorrect"]
     sns.set_theme(style="whitegrid")
     plt.figure(figsize=(10, 6))
-    ax = sns.barplot(data=melted, x="run_label", y="count", hue="metric", hue_order=metric_order)
+    ax = sns.barplot(data=melted, x="run_label", y="count", hue="metric_label", hue_order=metric_order)
     ax.set_title("No-RAG Record Counts by Run")
     ax.set_xlabel("Run")
     ax.set_ylabel("Number of Records")
-    ax.legend(title="Metric", labels=["Total", "Correct", "Incorrect"])
+    ax.legend(title="Metric")
     plt.xticks(rotation=10)
     plt.tight_layout()
     plt.savefig(OUTPUT_DIR / "no_rag_record_counts.png", dpi=200)
