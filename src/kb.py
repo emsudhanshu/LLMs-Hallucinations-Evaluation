@@ -5,7 +5,7 @@ from pathlib import Path
 
 from langchain_core.documents import Document
 from langchain_community.vectorstores import FAISS
-from langchain_ollama import OllamaEmbeddings
+from langchain_community.embeddings import HuggingFaceEmbeddings
 
 from data_loader import load_split
 
@@ -50,7 +50,7 @@ def load_or_create_vector_store(
     rebuild: bool = False,
 ) -> FAISS:
     faiss_path = Path(faiss_dir)
-    embeddings = OllamaEmbeddings(model=embedding_model)
+    embeddings = HuggingFaceEmbeddings(model_name=embedding_model)
 
     if faiss_path.exists() and not rebuild:
         return FAISS.load_local(
