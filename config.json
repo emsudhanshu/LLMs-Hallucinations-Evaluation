@@ -1,11 +1,11 @@
 {
   "answer_agent": {
-    "provider": "gemini",
-    "model": "gemini-2.5-flash"
+    "provider": "ollama",
+    "model": "llama3.2"
   },
   "verifier_agent": {
-    "provider": "gemini",
-    "model": "gemini-2.5-flash"
+    "provider": "ollama",
+    "model": "llama3.2"
   },
   "retrieval": {
     "embedding_model": "all-mpnet-base-v2",
