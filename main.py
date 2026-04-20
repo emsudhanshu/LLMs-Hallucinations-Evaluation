@@ -120,12 +120,13 @@ def ensure_knowledge_assets(config: dict, *, knowledge_limit: int, rebuild_kb: b
     retrieval = config["retrieval"]
     runtime = config["runtime"]
     kb_path = PROJECT_ROOT / retrieval["knowledge_base_path"]
-    build_knowledge_base(
-        data_dir=PROJECT_ROOT / runtime["data_dir"],
-        split=runtime["knowledge_split"],
-        output_path=kb_path,
-        limit=knowledge_limit,
-    )
+    if not kb_path.exists() or rebuild_kb:
+        build_knowledge_base(
+            data_dir=PROJECT_ROOT / runtime["data_dir"],
+            split=runtime["knowledge_split"],
+            output_path=kb_path,
+            limit=knowledge_limit,
+        )
     return load_or_create_vector_store(
         knowledge_base_path=kb_path,
         faiss_dir=PROJECT_ROOT / retrieval["faiss_dir"],
