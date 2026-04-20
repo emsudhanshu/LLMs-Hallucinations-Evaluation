@@ -1,0 +1,3 @@
+setup,records,correct,incorrect,accuracy
+RAG,50,26,24,0.52
+No RAG,50,28,22,0.56

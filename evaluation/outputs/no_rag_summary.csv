@@ -1,3 +1,0 @@
-run_folder,run_label,total_records,correct_records,incorrect_records,factual_error,reasoning_failure
-gemini-2.5-flash,Answer: gemini-2.5-flash | Verifier: gemini-2.5-flash,150,119,31,19,12
-llama3_latest__gemini-2.5-flash,Answer: llama3:latest | Verifier: gemini-2.5-flash,150,81,69,56,13
