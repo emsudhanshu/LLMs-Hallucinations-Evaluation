@@ -26,17 +26,28 @@ def main() -> None:
     input_path = Path(args.input).resolve()
     df = pd.read_csv(input_path)
 
+    # Ensure output columns exist with object dtype so string assignment never
+    # raises LossySetitemError (pandas reads all-NaN columns as float64).
+    for col in ("verifier_label", "verifier_explanation"):
+        if col not in df.columns:
+            df[col] = None
+        df[col] = df[col].astype(object)
+
     for idx, row in df.loc[df["is_correct"] == False].iterrows():
+        options = {
+            "A": row["option_a"],
+            "B": row["option_b"],
+            "C": row["option_c"],
+            "D": row["option_d"],
+        }
+        model_answer_letter = str(row["model_answer"]).strip().upper()
+        model_answer_text = options.get(model_answer_letter, "")
         result = classify_incorrect_answer(
             question=row["question"],
-            options={
-                "A": row["option_a"],
-                "B": row["option_b"],
-                "C": row["option_c"],
-                "D": row["option_d"],
-            },
+            options=options,
             correct_answer=row["correct_answer"],
-            model_answer=row["model_answer"],
+            model_answer_letter=model_answer_letter,
+            model_answer_text=model_answer_text,
         )
         df.at[idx, "verifier_label"] = result.label
         df.at[idx, "verifier_explanation"] = result.explanation
