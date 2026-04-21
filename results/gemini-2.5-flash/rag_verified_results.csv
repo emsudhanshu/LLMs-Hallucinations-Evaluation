@@ -1,0 +1,321 @@
+id,mode,answer_provider,answer_model_name,verifier_provider,verifier_model_name,predicted_letter,correct_letter,is_correct,hallucination_label,hallucination_reason
+45258d3d-b974-44dd-a161-c3fccbdadd88,rag,gemini,gemini-2.5-flash,gemini,gemini-2.5-flash,A,A,True,,
+b944ada9-d776-4c2a-9180-3ae5f393f72d,rag,gemini,gemini-2.5-flash,gemini,gemini-2.5-flash,A,A,True,,
+b64a9cd7-d076-4c55-8be1-f9c44fece6cc,rag,gemini,gemini-2.5-flash,gemini,gemini-2.5-flash,C,C,True,,
+c6365cce-507c-40f6-90a2-46b867f47b6e,rag,gemini,gemini-2.5-flash,gemini,gemini-2.5-flash,C,C,True,,
+72c1c5e0-b64f-4eef-bf22-ecfb60c5c19c,rag,gemini,gemini-2.5-flash,gemini,gemini-2.5-flash,A,A,True,,
+17360c6c-2c98-4fe2-aa85-487dcf4678df,rag,gemini,gemini-2.5-flash,gemini,gemini-2.5-flash,A,A,True,,
+62fa6f78-1964-4249-974b-6fcbbd7fc9ba,rag,gemini,gemini-2.5-flash,gemini,gemini-2.5-flash,A,A,True,,
+ce49098b-cc48-4168-859e-936e3e0c7459,rag,gemini,gemini-2.5-flash,gemini,gemini-2.5-flash,B,B,True,,
+18d5c4a1-cb81-41a8-9bfc-b6f7dec431d2,rag,gemini,gemini-2.5-flash,gemini,gemini-2.5-flash,A,B,False,FACTUAL_ERROR,"```json
+{
+  ""label"": """",
+  ""reason"": ""The model incorrectly identified the ECG finding as 'Ventricular bigeminy' (A) when the correct diagnosis is 'Electrical alternans' (B). These are distinct medical conditions with different ECG characteristics. Ventricular bigeminy involves a specific rhythm pattern with premature ventricular contractions, while Electrical alternans refers to beat-to-beat variation in QRS amplitude/morphology, typically due to pericardial effusion. The model's chosen option is medically and factually incorrect for the given (implied) ECG.""
+}
+```"
+de09d388-bd4e-42a9-ac6b-ee2d95f822e2,rag,gemini,gemini-2.5-flash,gemini,gemini-2.5-flash,A,B,False,FACTUAL_ERROR,"```json
+{
+ ""label"": """",
+ ""reason"": ""The model chose Ebstein's anomaly, which is characterized by marked cardiomegaly. However, the question explicitly states the X-ray reveals a 'normal sized heart'. This is a direct factual contradiction between the chosen diagnosis and the patient's clinical presentation, indicating a factual error in the model's understanding or application of the diagnostic criteria for Ebstein's anomaly.""
+}
+```"
+384a9281-2ee1-480b-a7d8-fd3ef49558e5,rag,gemini,gemini-2.5-flash,gemini,gemini-2.5-flash,B,B,True,,
+ae860b65-53a5-4547-b627-494174e15c3c,rag,gemini,gemini-2.5-flash,gemini,gemini-2.5-flash,A,A,True,,
+84d89a4f-db04-402d-88ab-ca39f6eee8bd,rag,gemini,gemini-2.5-flash,gemini,gemini-2.5-flash,B,B,True,,
+b1cc4ab0-a82c-437a-88c2-00953f3618ff,rag,gemini,gemini-2.5-flash,gemini,gemini-2.5-flash,A,A,True,,
+f184a533-98b4-43ad-b1f5-70edc6704d9e,rag,gemini,gemini-2.5-flash,gemini,gemini-2.5-flash,A,A,True,,
+26160738-1887-4252-86d4-1719a5a80bd3,rag,gemini,gemini-2.5-flash,gemini,gemini-2.5-flash,B,B,True,,
+6ccd8adb-af24-4e58-82a1-9219dfa37057,rag,gemini,gemini-2.5-flash,gemini,gemini-2.5-flash,A,A,True,,
+e38402c3-69bf-40a8-90c4-09277ca352eb,rag,gemini,gemini-2.5-flash,gemini,gemini-2.5-flash,D,D,True,,
+9078aaca-bbfd-41cd-ad69-03057fca84ba,rag,gemini,gemini-2.5-flash,gemini,gemini-2.5-flash,C,A,False,FACTUAL_ERROR,"```json
+{
+ ""label"": """",
+ ""reason"": ""The model incorrectly states that the characteristic of venous blood flow in the lower limb is 'Triphasic'. According to the gold explanation, venous Doppler flow is 'Monophasic', while 'Triphasic' is characteristic of normal peripheral arterial waveforms. This is a direct medical factual error.""
+}
+```"
+ac6be140-880b-40c6-9855-01f30c8dd7b2,rag,gemini,gemini-2.5-flash,gemini,gemini-2.5-flash,A,A,True,,
+7111d7b2-7e80-4e23-b5d0-9f42595c6a80,rag,gemini,gemini-2.5-flash,gemini,gemini-2.5-flash,B,B,True,,
+406b5b4f-9ad4-42c0-9669-12d038df4ac8,rag,gemini,gemini-2.5-flash,gemini,gemini-2.5-flash,D,C,False,REASONING_FAILURE,"```json
+{
+ ""label"": """",
+ ""reason"": ""The model chose 'Mask with reservoir' (80-90% O2), which delivers a high concentration of oxygen. However, the correct answer is 'Bag and mask' (100% O2), which delivers the absolute highest concentration among the options. The model failed to make the correct distinction or comparison to identify the superlative 'highest', even though its chosen option is semantically close in delivering high oxygen.""
+}
+```"
+8d2e7fe2-3354-44c2-8cdf-55ff23caaebb,rag,gemini,gemini-2.5-flash,gemini,gemini-2.5-flash,A,A,True,,
+7f0270fd-7d45-43ec-b77e-0038115bb845,rag,gemini,gemini-2.5-flash,gemini,gemini-2.5-flash,A,A,True,,
+8b9a0e04-4281-418a-aa94-7414a325732f,rag,gemini,gemini-2.5-flash,gemini,gemini-2.5-flash,A,D,False,FACTUAL_ERROR,"```json
+{
+ ""label"": """",
+ ""reason"": ""The model incorrectly identified a lip line opposite the tips of the upper incisors as 'Average'. In dental aesthetics, if the upper lip line at rest is at the level of the incisal tips, it indicates minimal or no incisor display, which is medically described as a 'Low' lip line or low incisal display, not 'Average'. An average display typically involves 2-4mm of incisor visibility at rest. Therefore, the model's choice is medically inaccurate.""
+}
+```"
+a3da135a-a6a2-4e1c-8823-8ab0913f5668,rag,gemini,gemini-2.5-flash,gemini,gemini-2.5-flash,B,B,True,,
+7751b7ed-6aa4-4b9a-a03c-bb991a2936db,rag,gemini,gemini-2.5-flash,gemini,gemini-2.5-flash,A,A,True,,
+159339f1-1545-47f6-9aad-47c1282458b4,rag,gemini,gemini-2.5-flash,gemini,gemini-2.5-flash,D,D,True,,
+b6149b01-79a9-4d07-8cbc-828452b3906e,rag,gemini,gemini-2.5-flash,gemini,gemini-2.5-flash,A,A,True,,
+f0f91922-12fd-4213-871c-19e47532a6d6,rag,gemini,gemini-2.5-flash,gemini,gemini-2.5-flash,C,C,True,,
+3624dceb-9318-4aa7-add1-b4c2fbac3065,rag,gemini,gemini-2.5-flash,gemini,gemini-2.5-flash,A,A,True,,
+7b81cd07-3765-4f50-8b28-a88576f4223e,rag,gemini,gemini-2.5-flash,gemini,gemini-2.5-flash,B,B,True,,
+e845e625-845e-4d02-ab3f-e00f2284d62e,rag,gemini,gemini-2.5-flash,gemini,gemini-2.5-flash,A,A,True,,
+fb79561d-8beb-4a31-aaa5-9350e20b0caa,rag,gemini,gemini-2.5-flash,gemini,gemini-2.5-flash,A,A,True,,
+67add9f9-94b5-40b2-904d-fb4965fb8309,rag,gemini,gemini-2.5-flash,gemini,gemini-2.5-flash,D,D,True,,
+6bfe528d-3481-47e2-bc3d-d38c56b5f0cc,rag,gemini,gemini-2.5-flash,gemini,gemini-2.5-flash,C,C,True,,
+26a782ca-42b0-441b-a24f-3a368f66727c,rag,gemini,gemini-2.5-flash,gemini,gemini-2.5-flash,B,B,True,,
+641f160f-eef0-4b8c-9cb8-3241d2d63173,rag,gemini,gemini-2.5-flash,gemini,gemini-2.5-flash,A,D,False,FACTUAL_ERROR,"```json
+{
+ ""label"": """",
+ ""reason"": ""The model incorrectly identified increasing transaminases as the most important prognostic factor for death in a child with active liver failure. Transaminases indicate liver injury, but sepsis is a far more critical and direct cause of mortality in this context, as explicitly stated in the gold explanation as a 'Poor prognostic factor for mortality'.""
+}
+```"
+3a13e9bb-48ab-46c1-9d50-e1612840d922,rag,gemini,gemini-2.5-flash,gemini,gemini-2.5-flash,B,C,False,REASONING_FAILURE,"```json
+{
+ ""label"": """",
+ ""reason"": ""The model chose PPH, which is a plausible cause of shock after delivery. However, the gold explanation highlights that while PPH can cause shock, it typically involves antecedent excessive blood loss, which is not mentioned in the question. The correct answer, uterine inversion, is characterized by shock that can be 'out of proportion to the bleeding' and should be suspected in cases of 'unexplained postpartum collapse' when other specific symptoms (like respiratory distress for AFE or convulsions for eclampsia) are absent. The model failed to make the correct inference and distinction based on the limited information provided in the question, which points towards uterine inversion as the most likely cause in an 'unexplained' shock scenario.""
+}
+```"
+9bad2095-2dd9-4485-946a-4ef51d16e8a4,rag,gemini,gemini-2.5-flash,gemini,gemini-2.5-flash,C,C,True,,
+86da0aa9-4ee5-4d2d-909b-e40e20b97d1c,rag,gemini,gemini-2.5-flash,gemini,gemini-2.5-flash,A,B,False,REASONING_FAILURE,"```json
+{
+ ""label"": """",
+ ""reason"": ""The question asks 'Which of the following is not true regarding myelopathy?'. Both the model's chosen option (A) 'Sensory loss of facial area' and the correct option (B) 'Brisk jaw jerk' are indeed not true regarding myelopathy, as both are signs of brainstem/cranial nerve pathology, not spinal cord pathology. The model correctly identified that option A is a statement that is 'not true regarding myelopathy'. However, it failed to make the correct inference or distinction to select option B as the intended best answer, which is also 'not true regarding myelopathy'. This indicates a failure in comparative reasoning or distinguishing the most appropriate answer among semantically similar incorrect options, rather than a factual error about the chosen option itself.""
+}
+```"
+ddb3f2a6-295a-4d4b-8478-5c15049b62a8,rag,gemini,gemini-2.5-flash,gemini,gemini-2.5-flash,A,A,True,,
+7697c864-514c-4a73-8ce4-ea6cf0d0b651,rag,gemini,gemini-2.5-flash,gemini,gemini-2.5-flash,A,D,False,REASONING_FAILURE,"```json
+{
+ ""label"": """",
+ ""reason"": ""The model correctly identified 'Growth scan' as a type of fetal scan and a component of the sequential arrangement. However, it failed to infer that all listed options (NT scan, Triple marker, Anomaly scan, and Growth scan) are part of the sequential arrangement of fetal scans, leading to an incorrect choice of a single component instead of the comprehensive 'All' option. This indicates an incorrect inference regarding the scope of the question and the best available answer, rather than a fundamental factual misunderstanding of what a growth scan is.""
+}
+```"
+9a3940ff-8c7a-492c-86d4-259c47cef675,rag,gemini,gemini-2.5-flash,gemini,gemini-2.5-flash,A,D,False,FACTUAL_ERROR,"```json
+{
+  ""label"": """",
+  ""reason"": ""The model incorrectly identified Kocher's incision as a muscle-splitting incision. Kocher's incision is a muscle-cutting incision (typically subcostal for cholecystectomy), not a muscle-splitting one. The correct answer, Lanz incision, is a well-known muscle-splitting incision used for appendectomy. This represents a direct factual inaccuracy regarding the nature of surgical incisions.""
+}
+```"
+98ae0eca-84e2-4b3c-95e3-2920fafef1e8,rag,gemini,gemini-2.5-flash,gemini,gemini-2.5-flash,C,A,False,FACTUAL_ERROR,"```json
+{
+  ""label"": """",
+  ""reason"": ""The model failed to provide the correct factual answer to the question. By selecting 'Not Recalled' when a correct factual option ('Africas') was available, the model demonstrated a lack of knowledge regarding the specific medical fact requested, which constitutes a factual error in the context of a QA task.""
+}
+```"
+5ce754b8-b358-4270-9bd1-8828700a19b1,rag,gemini,gemini-2.5-flash,gemini,gemini-2.5-flash,B,B,True,,
+849b1909-c988-4d0b-8eaf-a716707cbe97,rag,gemini,gemini-2.5-flash,gemini,gemini-2.5-flash,B,B,True,,
+07d58883-b752-4898-ab70-a1df892ef7bd,rag,gemini,gemini-2.5-flash,gemini,gemini-2.5-flash,A,A,True,,
+66b9ec80-bfe0-485a-89ae-42e666aab572,rag,gemini,gemini-2.5-flash,gemini,gemini-2.5-flash,A,C,False,REASONING_FAILURE,"```json
+{
+ ""label"": """",
+ ""reason"": ""The model chose 'Russet's periodontal index' (likely a misspelling of Russell's Periodontal Index). While Russell's PI is a recognized periodontal index and can be broadly considered a cumulative index, the correct answer is PMA (Massler and Schlour), which is also a cumulative index for gingival inflammation and often specifically referred to as such. The model failed to make the correct distinction or inference to select the most appropriate 'Cumulative index' among the given options, choosing a semantically close but incorrect option.""
+}
+```"
+0e46082c-1abc-4330-a12d-6948554559a2,rag,gemini,gemini-2.5-flash,gemini,gemini-2.5-flash,A,C,False,FACTUAL_ERROR,"```json
+{
+ ""label"": """",
+ ""reason"": ""The question asks about cells associated with intestinal villi. The model's chosen answer, 'Chief cells', are found in the stomach, not in the small intestine where villi are located. This is a fundamental anatomical and physiological factual error regarding the location of the cell type.""
+}
+```"
+360f90ec-189e-464a-a60d-ed9d9bda46ef,rag,gemini,gemini-2.5-flash,gemini,gemini-2.5-flash,A,B,False,FACTUAL_ERROR,"```json
+{
+  ""label"": """",
+  ""reason"": ""The model selected an option (0.5-1 kg) that is factually incorrect regarding the standard weight of rabbits used in ophthalmological experiments. The correct weight range is 1.5-2.5 kg. This is a direct factual inaccuracy, not a subtle distinction or incorrect inference from semantically close options.""
+}
+```"
+ee55a9bc-62bb-4952-957a-1902ff5b4376,rag,gemini,gemini-2.5-flash,gemini,gemini-2.5-flash,C,C,True,,
+06cab4ad-fb49-4daa-92db-5ee3529af02f,rag,gemini,gemini-2.5-flash,gemini,gemini-2.5-flash,B,B,True,,
+783df438-362f-4ab5-a8b3-11ea2bfb2af7,rag,gemini,gemini-2.5-flash,gemini,gemini-2.5-flash,A,A,True,,
+fe85c6e7-2064-4045-b348-57a9eb2bc6b4,rag,gemini,gemini-2.5-flash,gemini,gemini-2.5-flash,B,B,True,,
+87f6392c-b727-4e7d-be12-189db181fd2b,rag,gemini,gemini-2.5-flash,gemini,gemini-2.5-flash,C,C,True,,
+c2b29a6c-e501-4532-97ad-62934778db2a,rag,gemini,gemini-2.5-flash,gemini,gemini-2.5-flash,A,C,False,FACTUAL_ERROR,"```json
+{
+  ""label"": """",
+  ""reason"": ""The model incorrectly identified Amalgam as a solid solution. Amalgam is a multi-phase alloy, not a solid solution. Silver-palladium, the correct answer, is indeed a solid solution as described in the gold explanation.""
+}
+```"
+1bf69f9a-987c-48fc-9356-d62d2148c3a6,rag,gemini,gemini-2.5-flash,gemini,gemini-2.5-flash,A,A,True,,
+1482f619-ffc5-4773-b48e-995421bcab06,rag,gemini,gemini-2.5-flash,gemini,gemini-2.5-flash,B,A,False,REASONING_FAILURE,"```json
+{
+ ""label"": """",
+ ""reason"": ""The patient presents with supraglottic carcinoma (false cords, arytenoid, aryepiglottic folds) with bilateral mobile true cords. The model chose 'Horizontal partial hemilaryngectomy' (Option B), which is also known as supraglottic laryngectomy. This procedure is a standard voice-conserving surgery for supraglottic cancers that do not involve the true vocal cords, making it a medically plausible and often preferred option for the described condition. The 'Correct option' is 'Vertical hemilaryngectomy' (Option A), which is typically indicated for glottic or transglottic lesions and involves resection of a true vocal cord. While both are partial laryngectomies and voice-conserving, they differ in their primary indications and plane of resection. The model's choice is semantically close to the correct answer in that both are partial laryngectomies for laryngeal cancer, and its chosen option is medically sound for the given condition. However, it failed to make the specific distinction or inference that led to Option A being designated as the 'correct' answer in this particular context, as per the provided gold standard. This indicates an incorrect inference or distinction rather than a factual medical error.""
+}
+```"
+0e7917ea-310b-4477-9897-f4901f728448,rag,gemini,gemini-2.5-flash,gemini,gemini-2.5-flash,D,D,True,,
+eaf9a948-8b99-4522-a75d-7649ecd0e3f7,rag,gemini,gemini-2.5-flash,gemini,gemini-2.5-flash,A,D,False,FACTUAL_ERROR,"```json
+{
+ ""label"": """",
+ ""reason"": ""The model's chosen option, 'Repeat PSA', is medically incorrect as the 'next best step' for a patient presenting with acute symptoms of infection (fever, chills, dysuria) and an elevated PSA. The immediate priority is to treat the suspected acute bacterial prostatitis with antibiotics, not to repeat a PSA test. Delaying appropriate treatment for an acute infection is a factual medical error.""
+}
+```"
+133b6b41-ac32-4d94-b0c8-9004aa2214f4,rag,gemini,gemini-2.5-flash,gemini,gemini-2.5-flash,B,C,False,REASONING_FAILURE,"```json
+{
+  ""label"": """",
+  ""reason"": ""The model incorrectly identified the structure as 'Golgi bodies' instead of 'Secretory vesicles'. While Golgi bodies are involved in the formation and packaging of secretory vesicles, the model failed to make the correct distinction between the parent organelle and the specific vesicle structure indicated by the arrow. This represents an incorrect inference or distinction between closely related cellular components.""
+}
+```"
+a570d3c3-865a-41b6-8e21-dccbf7feec4c,rag,gemini,gemini-2.5-flash,gemini,gemini-2.5-flash,B,A,False,REASONING_FAILURE,"```json
+{
+ ""label"": """",
+ ""reason"": ""The model failed to correctly infer the most appropriate drug based on the crucial regional specificity mentioned in the question ('northeastern states'). While Sulfadoxine plus pyrimethamine is a recognized treatment for P. falciparum malaria (as indicated in the retrieved context for chloroquine-resistant cases), the gold explanation explicitly states that for northeastern states, the recommended ACT is Aemether-lumefantrine, whereas Sulfadoxine-pyrimethamine is part of the ACT for other regions. The model made an incorrect distinction regarding regional drug policy, leading to a suboptimal choice despite the chosen option being medically relevant in a broader context.""
+}
+```"
+7627eb54-4499-45d0-ba1f-1c8dbc6f2342,rag,gemini,gemini-2.5-flash,gemini,gemini-2.5-flash,D,D,True,,
+57eb90ac-1025-4763-b6c0-ff5581ef2126,rag,gemini,gemini-2.5-flash,gemini,gemini-2.5-flash,A,A,True,,
+890982b8-3906-44be-aff1-437a7c6c373d,rag,gemini,gemini-2.5-flash,gemini,gemini-2.5-flash,D,D,True,,
+069b7516-54c4-4e5d-acf7-a7c92fdd2a01,rag,gemini,gemini-2.5-flash,gemini,gemini-2.5-flash,C,C,True,,
+e872c1fb-0521-4b18-bfbb-b60544b78a99,rag,gemini,gemini-2.5-flash,gemini,gemini-2.5-flash,A,D,False,FACTUAL_ERROR,"```json
+{
+ ""label"": """",
+ ""reason"": ""The model's chosen option 'A) Ultrasound should be done in all cases' is medically incorrect. The gold explanation explicitly states that 'Ultrasound is not needed in all cases', directly contradicting the model's answer. This constitutes a factual error.""
+}
+```"
+21af7233-ae6a-423c-ae71-9148212a37c3,rag,gemini,gemini-2.5-flash,gemini,gemini-2.5-flash,C,C,True,,
+1e94a9ca-55e4-4e9a-bf7b-cb2dc4ba2ab5,rag,gemini,gemini-2.5-flash,gemini,gemini-2.5-flash,B,B,True,,
+4b40c558-d6be-4683-ac70-b43beafccae3,rag,gemini,gemini-2.5-flash,gemini,gemini-2.5-flash,B,B,True,,
+d1d16eda-c34e-4492-bee4-1b8c4246daf3,rag,gemini,gemini-2.5-flash,gemini,gemini-2.5-flash,C,C,True,,
+732401b0-673b-4842-baed-ddd00626c561,rag,gemini,gemini-2.5-flash,gemini,gemini-2.5-flash,A,A,True,,
+87d8663f-e0cd-4766-87b7-5312dfc4cd62,rag,gemini,gemini-2.5-flash,gemini,gemini-2.5-flash,B,B,True,,
+685afed9-5dfa-4383-9001-50148cf6cb99,rag,gemini,gemini-2.5-flash,gemini,gemini-2.5-flash,D,D,True,,
+bbd0ab20-0dce-48f8-ba8f-288d205feb3c,rag,gemini,gemini-2.5-flash,gemini,gemini-2.5-flash,A,A,True,,
+4a36bb7a-a19f-4aba-82b3-6cd35fc3cbc0,rag,gemini,gemini-2.5-flash,gemini,gemini-2.5-flash,A,A,True,,
+4f5f8f0f-7956-4d71-b7ad-d29b76eda55f,rag,gemini,gemini-2.5-flash,gemini,gemini-2.5-flash,B,B,True,,
+f1f7b5b5-1446-4c3b-b863-6f933689cb95,rag,gemini,gemini-2.5-flash,gemini,gemini-2.5-flash,A,B,False,FACTUAL_ERROR,"```json
+{
+ ""label"": """",
+ ""reason"": ""The model incorrectly states that 'Rigid immobilization' increases callus formation. Medically, rigid immobilization tends to reduce external callus formation, favoring primary bone healing, whereas controlled 'Movement at fracture site' (micromotion) is known to stimulate and increase callus formation. The model's answer is a direct factual inaccuracy regarding the biomechanics of fracture healing.""
+}
+```"
+e621e03f-d935-427f-a7a7-14f6f9a0efab,rag,gemini,gemini-2.5-flash,gemini,gemini-2.5-flash,B,B,True,,
+60e4c703-caf9-4e1c-a6d8-fcbaeae819d4,rag,gemini,gemini-2.5-flash,gemini,gemini-2.5-flash,C,C,True,,
+90481eeb-fa12-4a3d-8348-dd3f1758167c,rag,gemini,gemini-2.5-flash,gemini,gemini-2.5-flash,A,A,True,,
+d2398cd6-b205-4fb3-a4c4-9e575662b0bf,rag,gemini,gemini-2.5-flash,gemini,gemini-2.5-flash,A,A,True,,
+aa32b0f3-dd63-455c-8de0-9fd429edfd20,rag,gemini,gemini-2.5-flash,gemini,gemini-2.5-flash,A,A,True,,
+5878356e-0dc4-4d11-81fe-765d78c6b593,rag,gemini,gemini-2.5-flash,gemini,gemini-2.5-flash,A,A,True,,
+4710c6bb-67b6-47ab-85e1-7cac22bd35cf,rag,gemini,gemini-2.5-flash,gemini,gemini-2.5-flash,C,C,True,,
+92693be1-566d-490a-9ecb-bb5124769c74,rag,gemini,gemini-2.5-flash,gemini,gemini-2.5-flash,A,A,True,,
+0449cf80-87b3-4345-8c80-f007398c4fab,rag,gemini,gemini-2.5-flash,gemini,gemini-2.5-flash,D,D,True,,
+0c897b21-e2f5-4b70-ac40-edc59745a66c,rag,gemini,gemini-2.5-flash,gemini,gemini-2.5-flash,A,A,True,,
+4f95b3a2-a4bd-4bbd-978c-4a560a17d67d,rag,gemini,gemini-2.5-flash,gemini,gemini-2.5-flash,D,D,True,,
+820b79a8-3eef-494b-a007-995db6b5258c,rag,gemini,gemini-2.5-flash,gemini,gemini-2.5-flash,B,B,True,,
+740f528e-5192-44dc-89a3-4e2a1249e3c6,rag,gemini,gemini-2.5-flash,gemini,gemini-2.5-flash,B,B,True,,
+729e5ae9-94b3-4aa0-be92-c64186ec1875,rag,gemini,gemini-2.5-flash,gemini,gemini-2.5-flash,B,B,True,,
+e726a65e-0874-481f-b20e-717b951a7b73,rag,gemini,gemini-2.5-flash,gemini,gemini-2.5-flash,A,A,True,,
+0190a0f3-416a-4d56-a172-7738b023fd28,rag,gemini,gemini-2.5-flash,gemini,gemini-2.5-flash,C,C,True,,
+f719334e-ac98-46bf-8b44-89f71994e233,rag,gemini,gemini-2.5-flash,gemini,gemini-2.5-flash,A,A,True,,
+94e49b87-631d-4d93-bdf8-e8e71ae04654,rag,gemini,gemini-2.5-flash,gemini,gemini-2.5-flash,B,B,True,,
+cfa28a58-dd1f-4852-b34f-d150a9fd9011,rag,gemini,gemini-2.5-flash,gemini,gemini-2.5-flash,A,D,False,FACTUAL_ERROR,"```json
+{
+ ""label"": """",
+ ""reason"": ""The question asks for the false statement. The model chose option A: 'Anti-venom is not effective in humpnosed pit viper bite'. According to the gold explanation and medical facts, this statement is TRUE ('Polyvalent Anti-snake venom - Ineffective against humpnosed pit viper (Hypnale)'). For the model to choose A as the false statement, it must incorrectly believe that anti-venom *is* effective against humpnosed pit viper bites, which is a factual error in its medical knowledge.""
+}
+```"
+262da3d5-8115-448d-9e82-625fca2aac59,rag,gemini,gemini-2.5-flash,gemini,gemini-2.5-flash,B,B,True,,
+f2ed694c-991d-40e5-a191-25c076168ea6,rag,gemini,gemini-2.5-flash,gemini,gemini-2.5-flash,D,D,True,,
+e7f023ea-2147-47d3-9f2a-61fb60a900be,rag,gemini,gemini-2.5-flash,gemini,gemini-2.5-flash,A,A,True,,
+8c2a3258-e79f-4872-9de3-a0abc701f711,rag,gemini,gemini-2.5-flash,gemini,gemini-2.5-flash,A,B,False,FACTUAL_ERROR,"```json
+{
+ ""label"": """",
+ ""reason"": ""The model incorrectly identified the Mandible as the most prone facial bone to fracture. Medically, the Nasal bone is the most frequently fractured facial bone. The model's chosen option is factually incorrect in the context of the question asking for the *most* prone bone.""
+}
+```"
+17d49a43-a8cf-43c9-9c9e-70a42e741af1,rag,gemini,gemini-2.5-flash,gemini,gemini-2.5-flash,D,A,False,FACTUAL_ERROR,"```json
+{
+ ""label"": """",
+ ""reason"": ""The model chose 'R III Reflex' (D), which is not the correct answer. The correct answer is 'Facial pain scale' (A). These two options are distinct concepts and not semantically close, indicating a direct factual mismatch in identifying the intended correct response.""
+}
+```"
+b63d8163-5256-417b-8736-bc123eea66b1,rag,gemini,gemini-2.5-flash,gemini,gemini-2.5-flash,D,D,True,,
+efa0e92a-b11b-4c1c-a97d-8b4409430caa,rag,gemini,gemini-2.5-flash,gemini,gemini-2.5-flash,D,B,False,FACTUAL_ERROR,"```json
+{
+  ""label"": """",
+  ""reason"": ""The model chose 30 Lp/mm, which is a factually incorrect value for the resolution of IOPA. The correct resolution is 16 Lp/mm. This is a direct factual inaccuracy, not a subtle reasoning error between semantically close options.""
+}
+```"
+d7a840fd-00b4-4980-a01a-4de04a73d18f,rag,gemini,gemini-2.5-flash,gemini,gemini-2.5-flash,A,A,True,,
+099ab3bb-253b-41e1-8250-c41d92781148,rag,gemini,gemini-2.5-flash,gemini,gemini-2.5-flash,D,D,True,,
+ba705377-5543-4350-8483-bf984e4ccf15,rag,gemini,gemini-2.5-flash,gemini,gemini-2.5-flash,B,B,True,,
+18796d06-7762-4185-b0ca-c1b527502073,rag,gemini,gemini-2.5-flash,gemini,gemini-2.5-flash,A,C,False,FACTUAL_ERROR,"```json
+{
+ ""label"": """",
+ ""reason"": ""The model incorrectly identified 'Maintain vertical height of face' as a statement that is NOT true about stamp cusps. In reality, maintaining vertical height of occlusion is a primary function and a true characteristic of stamp cusps. The model's choice reflects a factual misunderstanding of the properties of stamp cusps.""
+}
+```"
+29e07bd0-f864-4738-bdbc-491f1205287f,rag,gemini,gemini-2.5-flash,gemini,gemini-2.5-flash,A,A,True,,
+8798d2af-fc67-4463-9098-f105b3f4b458,rag,gemini,gemini-2.5-flash,gemini,gemini-2.5-flash,A,A,True,,
+cc0d09f8-564d-4fe5-8b22-4b7d3e4ed586,rag,gemini,gemini-2.5-flash,gemini,gemini-2.5-flash,A,D,False,FACTUAL_ERROR,"```json
+{
+ ""label"": """",
+ ""reason"": ""The question asks for the 'Most common tumor of lacrimal gland'. The model chose 'Trans-scaphoid perilunate fracture'. A fracture is a break in a bone, not a tumor. This choice is medically and factually incorrect as an answer to a question about tumors.""
+}
+```"
+57d48689-dcbd-4e81-9ea9-d56b7f7eed2d,rag,gemini,gemini-2.5-flash,gemini,gemini-2.5-flash,C,A,False,REASONING_FAILURE,"```json
+{
+ ""label"": """",
+ ""reason"": ""The model chose 0.6 to 0.8% carbon, which is semantically and numerically close to the correct answer of 1-1.2%. Both ranges fall within the broader definition of carbon steel (0.5 to 1.5% carbon) provided in the gold explanation. The error is not a fundamental factual misunderstanding of carbon steel composition, but rather an incorrect inference or failure to distinguish the most precise and correct option among plausible choices.""
+}
+```"
+aadafd4c-cb37-460b-8e6f-28f42d01dd60,rag,gemini,gemini-2.5-flash,gemini,gemini-2.5-flash,C,C,True,,
+4a3f261b-cfd0-40f2-bac2-1337f2937591,rag,gemini,gemini-2.5-flash,gemini,gemini-2.5-flash,A,A,True,,
+0d96ee7c-7133-4d5a-becf-f9ad47582e54,rag,gemini,gemini-2.5-flash,gemini,gemini-2.5-flash,B,B,True,,
+c87fcef2-1b7d-44e2-85c0-618b956f675e,rag,gemini,gemini-2.5-flash,gemini,gemini-2.5-flash,C,C,True,,
+e881fcb0-a4f2-45ed-97cf-c53045f98e30,rag,gemini,gemini-2.5-flash,gemini,gemini-2.5-flash,B,B,True,,
+8254c1c7-9f97-4dae-96f6-d44661ff36cf,rag,gemini,gemini-2.5-flash,gemini,gemini-2.5-flash,A,A,True,,
+5988b3d1-c438-4d16-a887-979dac8bbd10,rag,gemini,gemini-2.5-flash,gemini,gemini-2.5-flash,A,A,True,,
+818e92da-69f5-41d8-a15a-f22c851140fb,rag,gemini,gemini-2.5-flash,gemini,gemini-2.5-flash,C,C,True,,
+b12749bc-ed37-4f12-9d45-029e1a0916b0,rag,gemini,gemini-2.5-flash,gemini,gemini-2.5-flash,A,A,True,,
+dd210467-68c5-4566-9cad-34e5ffa22bc9,rag,gemini,gemini-2.5-flash,gemini,gemini-2.5-flash,A,A,True,,
+0c240f5f-b2d4-4229-8a70-5c2bd42f2144,rag,gemini,gemini-2.5-flash,gemini,gemini-2.5-flash,D,D,True,,
+6167ceda-f896-4511-a570-ae19f725e1e7,rag,gemini,gemini-2.5-flash,gemini,gemini-2.5-flash,B,B,True,,
+fa39f24e-b6bf-43e6-8c00-8b1b5caf8c90,rag,gemini,gemini-2.5-flash,gemini,gemini-2.5-flash,A,A,True,,
+dd09ae12-8526-4766-bb41-af82b17c706f,rag,gemini,gemini-2.5-flash,gemini,gemini-2.5-flash,A,A,True,,
+27c3f1c6-a7e4-44fc-9e48-085254585c08,rag,gemini,gemini-2.5-flash,gemini,gemini-2.5-flash,A,B,False,FACTUAL_ERROR,"```json
+{
+ ""label"": """",
+ ""reason"": ""The model incorrectly identified Thyroxine as the hormone with the maximum effect on granulation wound healing. Cortisone (a corticosteroid) is known to have a significant, often inhibitory, effect on granulation tissue formation, making it the correct answer. Thyroxine does not have the maximum effect on granulation wound healing.""
+}
+```"
+539291d5-becc-4ccc-8862-9d9ff4fcc121,rag,gemini,gemini-2.5-flash,gemini,gemini-2.5-flash,D,D,True,,
+631db9fb-f930-40f3-a867-273597e5c7f9,rag,gemini,gemini-2.5-flash,gemini,gemini-2.5-flash,D,B,False,REASONING_FAILURE,"```json
+{
+ ""label"": """",
+ ""reason"": ""The model correctly identified that 'Marginal adaptation' is a benefit of pre-carve burnishing, which is factually correct. However, the question asks for what pre-carve burnishing is useful for *except*. The model failed to correctly infer the 'except' condition and chose an option that is a known benefit, rather than the one that is not a benefit.""
+}
+```"
+4932022f-bc9d-4d90-a610-f6c87cd0008d,rag,gemini,gemini-2.5-flash,gemini,gemini-2.5-flash,C,C,True,,
+3ea8bac5-2e0f-4f6f-8f5e-c9c1ef405a76,rag,gemini,gemini-2.5-flash,gemini,gemini-2.5-flash,D,D,True,,
+da27e783-4c0b-4621-bc3d-938a109d8425,rag,gemini,gemini-2.5-flash,gemini,gemini-2.5-flash,B,B,True,,
+ed111e74-8d76-4f2f-ac59-56e7ddc2be88,rag,gemini,gemini-2.5-flash,gemini,gemini-2.5-flash,B,B,True,,
+671eebea-f741-4ed8-bf68-36e36c8de1eb,rag,gemini,gemini-2.5-flash,gemini,gemini-2.5-flash,B,B,True,,
+7e567a6e-46f6-4f48-bd14-21e53726f1ff,rag,gemini,gemini-2.5-flash,gemini,gemini-2.5-flash,A,A,True,,
+f213cf1e-b5d6-4a25-8027-f1e39514ff20,rag,gemini,gemini-2.5-flash,gemini,gemini-2.5-flash,A,B,False,REASONING_FAILURE,"```json
+{
+ ""label"": """",
+ ""reason"": ""The model failed to correctly infer the best treatment modality based on the patient's significant comorbidities (75-year-old, chronic smoker, diabetic, edentulous). These factors increase the risk of surgical complications and delayed healing, making non-surgical management (Gunning splints) the preferred approach. The model chose a surgical option (ORIF), which, while a valid treatment for fractures in general, is not the 'best' choice for this high-risk patient, indicating a failure to make the correct distinction or comparison based on the specific clinical context.""
+}
+```"
+59f75254-2953-45a6-9c9a-61dd9a4dc537,rag,gemini,gemini-2.5-flash,gemini,gemini-2.5-flash,A,A,True,,
+8dd6630c-194f-4a21-a6a3-1a41f97dcd66,rag,gemini,gemini-2.5-flash,gemini,gemini-2.5-flash,C,C,True,,
+58d24187-ca26-4e5b-a3d9-c57ce0ff543b,rag,gemini,gemini-2.5-flash,gemini,gemini-2.5-flash,A,A,True,,
+723bd8c7-6da8-4897-8a1b-dd87891f24a7,rag,gemini,gemini-2.5-flash,gemini,gemini-2.5-flash,C,C,True,,
+35fb00cb-9acc-4177-8873-c3915a142c99,rag,gemini,gemini-2.5-flash,gemini,gemini-2.5-flash,A,A,True,,
+14e05154-05a2-4472-a63e-261d765893ae,rag,gemini,gemini-2.5-flash,gemini,gemini-2.5-flash,B,A,False,FACTUAL_ERROR,"```json
+{
+  ""label"": """",
+  ""reason"": ""The model incorrectly states that Tricuspid Regurgitation (TR) causes pulsatile varicose veins in the lower limbs. TR is known to cause pulsatile jugular veins and sometimes pulsatile liver, but not pulsatile varicose veins in the lower limbs. This is a direct factual inaccuracy regarding the clinical manifestation of TR.""
+}
+```"
+70097b1a-1f7a-4c04-ba9e-2f1489f0fb11,rag,gemini,gemini-2.5-flash,gemini,gemini-2.5-flash,C,C,True,,
+a5d204a1-2ae9-428a-bf12-1419fa344668,rag,gemini,gemini-2.5-flash,gemini,gemini-2.5-flash,B,B,True,,
+b5a8425a-1ddf-41e1-9ffa-c2088ce2897e,rag,gemini,gemini-2.5-flash,gemini,gemini-2.5-flash,A,A,True,,
+b9546516-2a4a-4179-a956-60d0387bf11f,rag,gemini,gemini-2.5-flash,gemini,gemini-2.5-flash,C,C,True,,
+76ba3417-012e-4bf8-840c-13bb7bc60dcc,rag,gemini,gemini-2.5-flash,gemini,gemini-2.5-flash,A,A,True,,
+f6829756-2e11-47cb-85a8-3ba40ecb3332,rag,gemini,gemini-2.5-flash,gemini,gemini-2.5-flash,A,D,False,REASONING_FAILURE,"```json
+{
+  ""label"": """",
+  ""reason"": ""The model correctly identified that the Umbilical Artery closes, which is a factually correct statement. However, the correct answer is 'All', indicating that the Umbilical Vein, Ductus venosus, and Foramen ovale also close. The model failed to infer that all listed options (A, B, and C) are correct in the context of closure, leading to an incomplete selection instead of the comprehensive 'All'. This demonstrates a failure in comparing the individual options and making the correct inference about the scope of the correct answer.""
+}
+```"
+2dd59aba-38c0-4aff-a000-1bcb640254ff,rag,gemini,gemini-2.5-flash,gemini,gemini-2.5-flash,A,B,False,FACTUAL_ERROR,"```json
+{
+ ""label"": """",
+ ""reason"": ""The model incorrectly chose 'Research papers and other articles proving efficacy of the drug' as information that need not be given in a drug advertisement letter. Drug advertisements are legally required to present information about the drug's effectiveness (efficacy) to ensure a fair balance with risk information. While full research papers are not typically included, the *information* regarding efficacy is a necessary component. Therefore, the model's choice reflects a factual misunderstanding of the required content for drug advertisements.""
+}
+```"

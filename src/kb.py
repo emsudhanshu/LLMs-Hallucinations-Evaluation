@@ -62,7 +62,12 @@ def load_or_create_vector_store(
     knowledge = load_knowledge_base(knowledge_base_path)
     documents = [
         Document(
-            page_content=item["text"],
+            page_content=(
+                f"Question: {item['question']}\n"
+                f"Explanation: {item['text']}\n"
+                f"Subject: {item['subject']}\n"
+                f"Topic: {item['topic']}"
+            ),
             metadata={
                 "id": item["id"],
                 "question": item["question"],
