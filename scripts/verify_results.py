@@ -52,6 +52,13 @@ def main() -> None:
     model = args.verifier_model or _PROVIDER_DEFAULT_MODELS.get(provider, "gpt-4o-mini")
     print(f"Using verifier: provider={provider!r}  model={model!r}")
 
+    # Ensure output columns exist with object dtype so string assignment never
+    # raises LossySetitemError (pandas reads all-NaN columns as float64).
+    for col in ("verifier_label", "verifier_explanation"):
+        if col not in df.columns:
+            df[col] = None
+        df[col] = df[col].astype(object)
+
     option_map = {"A": "option_a", "B": "option_b", "C": "option_c", "D": "option_d"}
 
     for idx, row in df.loc[df["is_correct"] == False].iterrows():
