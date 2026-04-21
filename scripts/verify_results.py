@@ -26,6 +26,14 @@ def main() -> None:
     input_path = Path(args.input).resolve()
     df = pd.read_csv(input_path)
 
+    if "verifier_label" not in df.columns:
+        df["verifier_label"] = None
+    df["verifier_label"] = df["verifier_label"].astype(object)
+
+    if "verifier_explanation" not in df.columns:
+        df["verifier_explanation"] = None
+    df["verifier_explanation"] = df["verifier_explanation"].astype(object)
+
     for idx, row in df.loc[df["is_correct"] == False].iterrows():
         result = classify_incorrect_answer(
             question=row["question"],
