@@ -1,14 +1,14 @@
 {
   "answer_agent": {
-    "provider": "gemini",
-    "model": "gemini-2.5-flash"
+    "provider": "ollama",
+    "model": "llama3.2"
   },
   "verifier_agent": {
-    "provider": "gemini",
-    "model": "gemini-2.5-flash"
+    "provider": "ollama",
+    "model": "llama3.2"
   },
   "retrieval": {
-    "embedding_model": "nomic-embed-text:latest",
+    "embedding_model": "all-mpnet-base-v2",
     "knowledge_base_path": "data/knowledge_base.json",
     "faiss_dir": "artifacts/faiss_kb",
     "top_k": 5,

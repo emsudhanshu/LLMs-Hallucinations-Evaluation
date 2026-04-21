@@ -1,15 +1,18 @@
 from __future__ import annotations
 
 import json
+import re
 from dataclasses import dataclass
 
-from .models import OpenAIAnswerModel
+from .config import get_ollama_base_url
 
 
 VERIFIER_LABELS = {
     "FACTUAL_ERROR",
     "REASONING_FAILURE",
 }
+
+LABEL_RE = re.compile(r"\b(FACTUAL_ERROR|REASONING_FAILURE)\b")
 
 
 @dataclass(frozen=True)
@@ -45,18 +48,12 @@ def build_verifier_prompt(
     )
 
 
-def classify_incorrect_answer(
-    *,
-    question: str,
-    options: dict[str, str],
-    correct_answer: str,
-    model_answer_letter: str,
-    model_answer_text: str,
-    retrieved_context: str | None = None,
-) -> VerificationResult:
-    model = OpenAIAnswerModel()
-    raw_response = model.client.chat.completions.create(
-        model="gpt-4o-mini",
+def _call_verifier_openai(prompt: str, model: str) -> str:
+    from .models import OpenAIAnswerModel
+
+    verifier = OpenAIAnswerModel()
+    raw_response = verifier.client.chat.completions.create(
+        model=model,
         temperature=0.0,
         response_format={"type": "json_object"},
         messages=[
@@ -67,23 +64,86 @@ def classify_incorrect_answer(
                     "Only output valid JSON."
                 ),
             },
-            {
-                "role": "user",
-                "content": build_verifier_prompt(
-                    question=question,
-                    options=options,
-                    correct_answer=correct_answer,
-                    model_answer_letter=model_answer_letter,
-                    model_answer_text=model_answer_text,
-                    retrieved_context=retrieved_context,
-                ),
-            },
+            {"role": "user", "content": prompt},
         ],
     )
-    content = raw_response.choices[0].message.content or "{}"
-    data = json.loads(content)
-    label = str(data.get("label", "")).strip().upper()
-    explanation = str(data.get("explanation", "")).strip()
-    if label not in VERIFIER_LABELS:
-        label = "FACTUAL_ERROR"
-    return VerificationResult(label=label, explanation=explanation)
+    return raw_response.choices[0].message.content or "{}"
+
+
+def _call_verifier_gemini(prompt: str, model: str) -> str:
+    import google.generativeai as genai
+
+    from .config import get_gemini_api_key
+
+    api_key = get_gemini_api_key()
+    if not api_key:
+        raise ValueError("GEMINI_API_KEY is not set.")
+    genai.configure(api_key=api_key)
+    response = genai.GenerativeModel(model).generate_content(
+        prompt,
+        generation_config={"temperature": 0.0},
+    )
+    return getattr(response, "text", "") or "{}"
+
+
+def _call_verifier_ollama(prompt: str, model: str) -> str:
+    import requests
+
+    base_url = get_ollama_base_url().rstrip("/")
+    response = requests.post(
+        f"{base_url}/api/generate",
+        json={"model": model, "prompt": prompt, "stream": False, "options": {"temperature": 0.0}},
+        timeout=180,
+    )
+    response.raise_for_status()
+    return response.json().get("response", "{}")
+
+
+def _parse_verifier_response(raw: str) -> VerificationResult:
+    try:
+        data = json.loads(raw)
+        label = str(data.get("label", "")).strip().upper()
+        explanation = str(data.get("explanation", "")).strip()
+        if label in VERIFIER_LABELS:
+            return VerificationResult(label=label, explanation=explanation or "No explanation returned.")
+    except Exception:
+        pass
+
+    match = LABEL_RE.search(raw)
+    if match:
+        label = match.group(1)
+        explanation = raw.replace(label, "").strip(" :-\n") or "Verifier returned an unstructured response."
+        return VerificationResult(label=label, explanation=explanation)
+
+    return VerificationResult(label="FACTUAL_ERROR", explanation="Verifier returned an invalid response.")
+
+
+def classify_incorrect_answer(
+    *,
+    question: str,
+    options: dict[str, str],
+    correct_answer: str,
+    model_answer_letter: str,
+    model_answer_text: str,
+    retrieved_context: str | None = None,
+    provider: str = "openai",
+    model: str = "gpt-4o-mini",
+) -> VerificationResult:
+    prompt = build_verifier_prompt(
+        question=question,
+        options=options,
+        correct_answer=correct_answer,
+        model_answer_letter=model_answer_letter,
+        model_answer_text=model_answer_text,
+        retrieved_context=retrieved_context,
+    )
+    normalized = provider.strip().lower()
+    if normalized == "openai":
+        raw = _call_verifier_openai(prompt, model)
+    elif normalized == "gemini":
+        raw = _call_verifier_gemini(prompt, model)
+    elif normalized in {"ollama", "llama", "llama3"}:
+        raw = _call_verifier_ollama(prompt, model)
+    else:
+        raise ValueError(f"Unsupported verifier provider: {provider!r}")
+    return _parse_verifier_response(raw)

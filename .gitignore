@@ -5,4 +5,5 @@ __pycache__/
 results/*.csv
 results/*.json
 data/processed/
+artifacts/faiss_kb/
 
