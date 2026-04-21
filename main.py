@@ -19,7 +19,8 @@ if str(SRC_DIR) not in sys.path:
 try:
     from dotenv import load_dotenv
 except ModuleNotFoundError:  # pragma: no cover
-    def load_dotenv() -> bool:
+    def load_dotenv(*args, **kwargs) -> bool:
+        del args, kwargs
         return False
 
 
@@ -120,7 +121,13 @@ def ensure_knowledge_assets(config: dict, *, knowledge_limit: int, rebuild_kb: b
     retrieval = config["retrieval"]
     runtime = config["runtime"]
     kb_path = PROJECT_ROOT / retrieval["knowledge_base_path"]
-    if not kb_path.exists() or rebuild_kb:
+    knowledge_split_path = PROJECT_ROOT / runtime["data_dir"] / f"{runtime['knowledge_split']}.json"
+    if rebuild_kb or not kb_path.exists():
+        if not knowledge_split_path.exists():
+            raise FileNotFoundError(
+                f"Missing knowledge split file: {knowledge_split_path}. "
+                "Provide the split or keep the existing knowledge base artifacts."
+            )
         build_knowledge_base(
             data_dir=PROJECT_ROOT / runtime["data_dir"],
             split=runtime["knowledge_split"],
