@@ -1,0 +1,3 @@
+setup,incorrect_records,factual_error,reasoning_failure,unlabeled_incorrect
+RAG,11,0,0,11
+No RAG,15,9,6,0
