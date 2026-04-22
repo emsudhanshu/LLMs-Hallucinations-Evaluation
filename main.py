@@ -139,6 +139,7 @@ def ensure_knowledge_assets(config: dict, *, knowledge_limit: int, rebuild_kb: b
         faiss_dir=PROJECT_ROOT / retrieval["faiss_dir"],
         embedding_model=retrieval["embedding_model"],
         rebuild=rebuild_kb or retrieval.get("rebuild", False),
+        use_hybrid=retrieval.get("use_hybrid_search", False),
     )
 
 
@@ -284,6 +285,9 @@ def main() -> None:
                 "verifier_model": config["verifier_agent"]["model"],
                 "retriever": retriever,
                 "top_k": config["retrieval"]["top_k"],
+                "fetch_k": config["retrieval"].get("fetch_k", config["retrieval"]["top_k"] * 3 + 5),
+                "min_score_threshold": config["retrieval"].get("min_score_threshold", 0.0),
+                "max_chunk_words": config["retrieval"].get("max_chunk_words", 0),
                 "mode": args.mode,
                 "skip_verifier": args.answer_only,
             }

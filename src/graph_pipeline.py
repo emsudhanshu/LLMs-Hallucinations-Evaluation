@@ -2,9 +2,21 @@ from __future__ import annotations
 
 from typing import TypedDict
 
+from langchain_core.documents import Document
 from langgraph.graph import END, START, StateGraph
 
 from llm import answer_prompt, call_model, classify_with_llm, normalize_answer, verifier_prompt
+
+_WORDS_PER_TOKEN_APPROX = 0.75  # rough conversion used for context truncation
+
+# Tuple collected for each accepted retrieved chunk: (document, cosine_score, text)
+_KeptChunk = tuple[Document, float, str]
+
+
+def _truncate_words(text: str, max_words: int) -> str:
+    """Return *text* truncated to at most *max_words* whitespace-separated tokens."""
+    words = text.split()
+    return " ".join(words[:max_words]) if len(words) > max_words else text
 
 
 class QAState(TypedDict, total=False):
@@ -20,6 +32,9 @@ class QAState(TypedDict, total=False):
     verifier_model: str
     retriever: object
     top_k: int
+    fetch_k: int
+    min_score_threshold: float
+    max_chunk_words: int
     mode: str
     skip_verifier: bool
     retrieved_context: str
@@ -40,22 +55,49 @@ def build_graph():
         if state.get("mode") != "rag" or retriever is None:
             return {"retrieved_context": "", "retrieved_ids": "", "retrieved_scores": ""}
 
-        docs = retriever.similarity_search_with_score(
-            state["question"],
-            k=state.get("top_k", 3) + 3,
-        )
-        kept = []
+        top_k: int = state.get("top_k", 3)
+        fetch_k: int = state.get("fetch_k", top_k * 3 + 5)
+        min_score: float = state.get("min_score_threshold", 0.0)
+        max_chunk_words: int = state.get("max_chunk_words", 0)
+        # Cap total context at 3× the per-chunk budget to avoid overwhelming
+        # smaller models with irrelevant text.
+        max_total_words: int = max_chunk_words * top_k if max_chunk_words else 0
+
+        # Enrich the retrieval query with the answer options so that medical
+        # terminology in the choices helps surface more relevant KB entries.
+        options = state.get("options", {})
+        enriched_query = (
+            state["question"]
+            + " "
+            + " ".join(options.values())
+        ).strip()
+
+        docs = retriever.similarity_search_with_score(enriched_query, k=fetch_k)
+
+        kept: list[_KeptChunk] = []
+        total_words = 0
         for doc, score in docs:
             if doc.metadata.get("id") == state.get("record_id"):
                 continue
-            kept.append((doc, score))
-            if len(kept) >= state.get("top_k", 3):
+            # Drop chunks whose cosine similarity falls below the threshold.
+            if score < min_score:
+                continue
+            content = doc.page_content
+            if max_chunk_words:
+                content = _truncate_words(content, max_chunk_words)
+            chunk_words = len(content.split())
+            # Stop adding chunks once the total context budget is exhausted.
+            if max_total_words and total_words + chunk_words > max_total_words:
+                break
+            kept.append((doc, score, content))
+            total_words += chunk_words
+            if len(kept) >= top_k:
                 break
 
         return {
-            "retrieved_context": "\n\n".join(doc.page_content for doc, _ in kept),
-            "retrieved_ids": "|".join(str(doc.metadata.get("id", "")) for doc, _ in kept),
-            "retrieved_scores": "|".join(f"{float(score):.4f}" for _, score in kept),
+            "retrieved_context": "\n\n".join(content for _, _, content in kept),
+            "retrieved_ids": "|".join(str(doc.metadata.get("id", "")) for doc, _, _ in kept),
+            "retrieved_scores": "|".join(f"{float(score):.4f}" for _, score, _ in kept),
         }
 
     def answer(state: QAState) -> QAState:

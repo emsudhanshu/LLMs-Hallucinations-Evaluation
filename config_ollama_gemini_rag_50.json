@@ -8,10 +8,14 @@
     "model": "gemini-2.5-flash"
   },
   "retrieval": {
-    "embedding_model": "nomic-embed-text:latest",
+    "embedding_model": "NeuML/pubmedbert-base-embeddings",
     "knowledge_base_path": "data/knowledge_base.json",
     "faiss_dir": "artifacts/faiss_kb",
     "top_k": 3,
+    "fetch_k": 15,
+    "min_score_threshold": 0.3,
+    "max_chunk_words": 200,
+    "use_hybrid_search": true,
     "rebuild": false
   },
   "runtime": {
@@ -19,7 +23,7 @@
     "eval_split": "dev",
     "knowledge_split": "train",
     "sample_size": 50,
-    "knowledge_limit": 5000,
+    "knowledge_limit": 50000,
     "sleep_seconds": 0.0
   }
 }
