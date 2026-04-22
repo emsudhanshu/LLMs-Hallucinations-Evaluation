@@ -25,7 +25,8 @@ def build_rag_prompt(sample: MCQSample, retrieved_chunks: list[str]) -> str:
         f"Context {idx + 1}: {chunk}" for idx, chunk in enumerate(retrieved_chunks)
     )
     return (
-        "Use ONLY the following medical context to answer the question.\n"
+        "Use the following medical context if it is relevant to the question. "
+        "If it does not apply, rely on your medical knowledge.\n"
         f"{context}\n\n"
         f"Question: {sample.question}\n"
         f"A) {sample.options['A']}\n"

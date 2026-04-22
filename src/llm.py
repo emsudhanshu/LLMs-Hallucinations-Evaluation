@@ -29,12 +29,16 @@ def normalize_answer(text: str | None) -> str:
 
 
 def answer_prompt(question: str, options: dict[str, str], context: str = "") -> str:
-    context_block = f"Medical Context:\n{context}\n\n" if context else ""
+    context_block = (
+        f"Relevant Medical Context (use only if applicable to the question):\n{context}\n\n"
+        if context
+        else ""
+    )
     return (
         "You are a medical expert solving a multiple-choice medical question.\n"
         "Return ONLY one capital letter: A, B, C, or D.\n\n"
-        f"{context_block}"
         f"Question: {question}\n"
+        f"{context_block}"
         f"A) {options['A']}\n"
         f"B) {options['B']}\n"
         f"C) {options['C']}\n"
