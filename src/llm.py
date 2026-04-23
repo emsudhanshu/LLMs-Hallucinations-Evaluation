@@ -24,8 +24,8 @@ class VerificationResult:
 def normalize_answer(text: str | None) -> str:
     if not text:
         return ""
-    match = ANSWER_RE.search(text.upper())
-    return match.group(1) if match else ""
+    matches = ANSWER_RE.findall(text.upper())
+    return matches[-1] if matches else ""
 
 
 def answer_prompt(question: str, options: dict[str, str], context: str = "") -> str:
