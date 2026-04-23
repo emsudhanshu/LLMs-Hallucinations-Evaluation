@@ -149,7 +149,8 @@ def make_architecture_diagram() -> str:
 
     def arrow(x1, y1, x2, y2, label=""):
         ax.annotate("", xy=(x2, y2), xytext=(x1, y1),
-                    arrowprops=dict(arrowstyle="->", color=DARK_GRAY, lw=1.2), zorder=2)
+                    arrowprops=dict(arrowstyle="->", color=DARK_GRAY, lw=1.2,
+                                   shrinkA=5, shrinkB=5), zorder=2)
         if label:
             mx, my = (x1 + x2) / 2, (y1 + y2) / 2
             ax.text(mx, my + 0.12, label, ha="center", va="bottom",
@@ -157,7 +158,6 @@ def make_architecture_diagram() -> str:
 
     # ---- Common path ----
     box(1.0, 2.5, 1.5, 0.7, "MedMCQA\nQuestion", color="#EEF4FF", bold=True, fontsize=7.5)
-    arrow(1.75, 2.5, 2.45, 2.5)
 
     # ---- RAG branch ----
     box(3.2, 3.7, 1.5, 0.65, "FAISS\nRetrieval", color="#FFF3E0", fontsize=7.5)
@@ -175,18 +175,9 @@ def make_architecture_diagram() -> str:
     ax.text(3.2, 0.65, "No-RAG Pipeline", ha="center", va="bottom",
             fontsize=8.5, fontweight="bold", color=BLUE)
 
-    # Splitter from question
-    ax.annotate("", xy=(2.45, 3.7), xytext=(2.45, 2.5),
-                arrowprops=dict(arrowstyle="->", color=DARK_GRAY, lw=1.2))
-    ax.annotate("", xy=(2.45, 1.3), xytext=(2.45, 2.5),
-                arrowprops=dict(arrowstyle="->", color=DARK_GRAY, lw=1.2))
-    ax.plot([2.45, 2.45], [1.3, 3.7], color=DARK_GRAY, lw=1.2, zorder=2)
-
-    arrow(2.45, 3.7, 2.45, 3.7)  # noop – just visual
-
-    for y in [3.7, 1.3]:
-        ax.annotate("", xy=(2.45, y), xytext=(1.75, 2.5),
-                    arrowprops=dict(arrowstyle="->", color=DARK_GRAY, lw=1.2))
+    # Two arrows from MedMCQA Question – one to each branch
+    arrow(1.75, 2.5, 2.45, 3.7)   # to RAG branch (FAISS Retrieval)
+    arrow(1.75, 2.5, 2.45, 1.3)   # to No-RAG branch (No Retrieval)
 
     arrow(3.95, 3.7, 4.30, 3.7)
     arrow(5.90, 3.7, 6.25, 3.7)
