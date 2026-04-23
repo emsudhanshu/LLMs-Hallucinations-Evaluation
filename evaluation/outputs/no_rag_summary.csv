@@ -1,0 +1,3 @@
+run_folder,run_label,total_records,correct_records,incorrect_records,factual_error,reasoning_failure
+gemini_answer__gemini_verifier,gemini-2.5-flash,50,35,15,9,6
+ollama_answer__gemini_verifier,llama3:latest,50,28,22,18,4

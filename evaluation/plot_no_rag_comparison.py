@@ -25,15 +25,12 @@ class RunSummary:
 
 
 def discover_no_rag_runs() -> list[Path]:
-    return sorted(RESULTS_ROOT.glob("*/no_rag_results.csv"))
+    return sorted(RESULTS_ROOT.glob("NO_RAG/*/*_no_rag.csv"))
 
 
 def build_run_label(df: pd.DataFrame, run_folder: str) -> str:
     answer_model = str(df["answer_model_name"].dropna().iloc[0]) if "answer_model_name" in df.columns else "unknown"
-    verifier_model = (
-        str(df["verifier_model_name"].dropna().iloc[0]) if "verifier_model_name" in df.columns else "unknown"
-    )
-    return f"Answer: {answer_model} | Verifier: {verifier_model}"
+    return answer_model
 
 
 def summarize_run(path: Path) -> RunSummary:
@@ -118,7 +115,7 @@ def plot_hallucination_breakdown(df: pd.DataFrame) -> None:
     ax.set_title("No-RAG Hallucination Label Distribution")
     ax.set_xlabel("Run")
     ax.set_ylabel("Incorrect Records")
-    plt.xticks(rotation=10)
+    plt.xticks(rotation=20, ha="right")
     plt.tight_layout()
     plt.savefig(OUTPUT_DIR / "no_rag_hallucination_distribution.png", dpi=200)
     plt.close()
