@@ -237,11 +237,14 @@ def build_html(acc_b64: str, hall_b64: str, arch_b64: str, qr_b64: str) -> str:
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 <title>LLM Hallucination Evaluation – Research Poster</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Saira:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet"/>
 <style>
   /* ---- Base ---- */
   * {{ box-sizing: border-box; margin: 0; padding: 0; }}
   body {{
-    font-family: 'Arial', Helvetica, sans-serif;
+    font-family: 'Saira', sans-serif;
     background: #fff;
     color: {DARK_GRAY};
     font-size: 10pt;
