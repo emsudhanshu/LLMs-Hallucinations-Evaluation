@@ -90,35 +90,53 @@ def make_accuracy_chart() -> str:
 # Figure 2 – Hallucination breakdown
 # ---------------------------------------------------------------------------
 def make_hallucination_chart() -> str:
-    # LLaMA 3 (ollama) results – both conditions have labelled hallucinations
+    # Hallucination counts per condition (50 questions each)
+    # LLaMA 3 (Ollama): from ollama_answer__gemini_verifier_no_rag/rag.csv
+    # Gemini: from gemini_answer__gemini_verifier_no_rag/rag.csv
     categories = ["FACTUAL\nERROR", "REASONING\nFAILURE"]
-    no_rag_vals = [18, 4]   # from ollama_answer__gemini_verifier_no_rag.csv
-    rag_vals    = [21, 3]   # from ollama_answer__gemini_verifier_rag.csv
+    llama_no_rag = [18, 4]
+    llama_rag    = [21, 3]
+    gemini_no_rag = [9, 6]
+    gemini_rag    = [0, 0]
 
-    fig, ax = plt.subplots(figsize=(4.8, 3.0))
+    fig, ax = plt.subplots(figsize=(6.0, 3.4))
     x = np.arange(len(categories))
-    w = 0.32
+    w = 0.20  # width of each bar
 
-    b1 = ax.bar(x - w / 2, no_rag_vals, width=w, label="No-RAG (LLaMA 3)",
-                color="#E07070", edgecolor="white", zorder=3)
-    b2 = ax.bar(x + w / 2, rag_vals,    width=w, label="RAG (LLaMA 3)",
-                color=RED,    edgecolor="white", zorder=3)
+    offsets = [-1.5 * w, -0.5 * w, 0.5 * w, 1.5 * w]
+    bar_data = [
+        (llama_no_rag,  "#E07070", "//", "No-RAG (LLaMA 3)"),
+        (llama_rag,     RED,       "",   "RAG (LLaMA 3)"),
+        (gemini_no_rag, "#7090D0", "//", "No-RAG (Gemini)"),
+        (gemini_rag,    BLUE,      "",   "RAG (Gemini)"),
+    ]
 
-    for bar in list(b1) + list(b2):
-        ax.text(bar.get_x() + bar.get_width() / 2, bar.get_height() + 0.4,
-                str(int(bar.get_height())),
-                ha="center", va="bottom", fontsize=9, fontweight="bold", color=DARK_GRAY)
+    bars_all = []
+    for (vals, color, hatch, label), offset in zip(bar_data, offsets):
+        b = ax.bar(x + offset, vals, width=w, label=label,
+                   color=color, hatch=hatch, edgecolor="white", zorder=3)
+        bars_all.append(b)
+
+    for bars in bars_all:
+        for bar in bars:
+            h = bar.get_height()
+            if h > 0:
+                ax.text(bar.get_x() + bar.get_width() / 2, h + 0.4,
+                        str(int(h)),
+                        ha="center", va="bottom", fontsize=7.5,
+                        fontweight="bold", color=DARK_GRAY)
 
     ax.set_xticks(x)
     ax.set_xticklabels(categories, fontsize=9)
     ax.set_ylim(0, 28)
     ax.set_ylabel("Count", fontsize=9)
-    ax.set_title("Hallucination Type Breakdown (LLaMA 3, 50 Qs)", fontsize=9, fontweight="bold")
+    ax.set_title("Hallucination Type Breakdown – LLaMA 3 vs. Gemini (50 Qs each)",
+                 fontsize=8.5, fontweight="bold")
     ax.yaxis.grid(True, linestyle="--", alpha=0.5, zorder=0)
     ax.set_axisbelow(True)
     ax.spines["top"].set_visible(False)
     ax.spines["right"].set_visible(False)
-    ax.legend(fontsize=8)
+    ax.legend(fontsize=7.5, ncol=2, loc="upper right")
 
     fig.tight_layout()
     b64 = _fig_to_b64(fig)
@@ -554,7 +572,7 @@ def build_html(acc_b64: str, hall_b64: str, arch_b64: str, qr_b64: str) -> str:
         <div class="section-title">Hallucination Type Breakdown</div>
         <p>Incorrect answers are classified by a Gemini verifier into two categories. <strong>FACTUAL_ERROR</strong> occurs when the model states information directly contradicted by established medical facts. <strong>REASONING_FAILURE</strong> occurs when the model's logic chain is flawed despite partial factual knowledge.</p>
         <img class="chart-img" src="data:image/png;base64,{hall_b64}" alt="Hallucination type breakdown"/>
-        <p style="font-size:7.5pt; color:#666; margin-top:2px;">LLaMA&nbsp;3 results shown; Gemini No-RAG: 9 FACTUAL_ERROR, 6 REASONING_FAILURE; Gemini RAG: 0 (no wrong answers were additionally labeled in that run).</p>
+        <p style="font-size:7.5pt; color:#666; margin-top:2px;">Both models shown across No-RAG and RAG conditions. Gemini RAG produced 0 labelled hallucinations in this run; LLaMA&nbsp;3 shows higher FACTUAL_ERROR counts overall.</p>
       </div>
 
     </div><!-- /col-mid -->
